@@ -64,10 +64,10 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", inline: <<-SHELL
-      sudo apt-get update && sudo apt-get -y upgrade
-      sudo apt-get install -y python-pip unzip jq
-      pip install terrafile 
-      pip install awscli --upgrade --user
+      sudo apt-get -qq update
+      sudo apt-get -qq install -y python-pip unzip jq awscli ruby
+      pip install -q terrafile
+      sudo gem install terraforming
       wget --quiet https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
       unzip terraform_0.11.7_linux_amd64.zip
       mkdir -p /home/ubuntu/bin/
