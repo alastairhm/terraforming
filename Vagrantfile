@@ -72,5 +72,6 @@ Vagrant.configure("2") do |config|
       unzip terraform_0.11.7_linux_amd64.zip
       mkdir -p /home/ubuntu/bin/
       mv terraform /home/ubuntu/bin/
+      rm -f terraform_0.11.7_linux_amd64.zip
    SHELL
 end
