@@ -64,14 +64,18 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", inline: <<-SHELL
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get -qq update
-      sudo apt-get -qq install -y python-pip unzip jq awscli ruby
+      sudo apt-get -qq install -y python-pip unzip jq awscli ruby apt-transport-https ca-certificates curl software-properties-common docker-ce
       pip install -q terrafile
+      pip install -q aws-sam-cli
       sudo gem install terraforming
       wget --quiet https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
       unzip terraform_0.11.7_linux_amd64.zip
       mkdir -p /home/ubuntu/bin/
       mv terraform /home/ubuntu/bin/
       rm -f terraform_0.11.7_linux_amd64.zip
+      sudo usermod -aG docker vagrant
    SHELL
 end
