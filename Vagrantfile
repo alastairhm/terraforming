@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get -qq update
-      sudo apt-get -qq install -y python-pip unzip jq awscli ruby apt-transport-https ca-certificates curl software-properties-common docker-ce tree
+      sudo apt-get -qq install -y python-pip unzip jq awscli ruby apt-transport-https ca-certificates curl software-properties-common docker-ce
       pip install -q terrafile
       pip install -q aws-sam-cli
       sudo gem install terraforming
@@ -77,5 +77,25 @@ Vagrant.configure("2") do |config|
       mv terraform /home/ubuntu/bin/
       rm -f terraform_0.11.7_linux_amd64.zip
       sudo usermod -aG docker ubuntu
+      cat << EOF >> /home/ubuntu/.bashrc
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ls='ls -G'
+alias ll='ls -lG'
+alias dir='ls -lG'
+alias gits='git status'
+alias gs='git status'
+alias gl='git log'
+alias ga='git add'
+alias gd='git diff'
+alias gita='git add'
+alias gitc='git commit -m'
+alias gitco='git checkout'
+alias gpl='git pull'
+alias gph='git push'
+alias gba='git branch -a'
+alias gg='git graph --all'
+alias tmp='cd ~/tmp;ls -l'
+EOF
    SHELL
 end
