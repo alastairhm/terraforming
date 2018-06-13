@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get -qq update
-      sudo apt-get -qq install -y python-pip unzip jq awscli ruby apt-transport-https ca-certificates curl software-properties-common docker-ce
+      sudo apt-get -qq install -y python-pip unzip jq awscli ruby apt-transport-https ca-certificates curl software-properties-common docker-ce tree
       pip install -q terrafile
       pip install -q aws-sam-cli
       sudo gem install terraforming
