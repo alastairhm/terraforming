@@ -96,6 +96,7 @@ alias gph='git push'
 alias gba='git branch -a'
 alias gg='git graph --all'
 alias tmp='cd ~/tmp;ls -l'
+aws configure
 EOF
    SHELL
 end
