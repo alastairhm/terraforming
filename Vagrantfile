@@ -76,6 +76,6 @@ Vagrant.configure("2") do |config|
       mkdir -p /home/ubuntu/bin/
       mv terraform /home/ubuntu/bin/
       rm -f terraform_0.11.7_linux_amd64.zip
-      sudo usermod -aG docker vagrant
+      sudo usermod -aG docker ubuntu
    SHELL
 end
