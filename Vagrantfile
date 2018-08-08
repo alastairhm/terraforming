@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get -qq update
-      sudo apt-get -qq install -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack
+      sudo apt-get -qq install -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep
       pip install -q terrafile
       pip install -q aws-sam-cli
       pip install -q awscli
@@ -78,6 +78,11 @@ Vagrant.configure("2") do |config|
       mv terraform /home/ubuntu/bin/
       rm -f terraform_0.11.7_linux_amd64.zip
       sudo usermod -aG docker ubuntu
+      wget --quiet -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
+      tar xzf go1.9.linux-amd64.tar.gz
+      sudo mv go /usr/local/
+      sudo chown -R root:root /usr/local/go
+      echo "PATH=\$PATH:/usr/local/go/bin" | sudo tee /etc/profile.d/go.sh
       cat << EOF >> /home/ubuntu/.bashrc
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -97,7 +102,9 @@ alias gph='git push'
 alias gba='git branch -a'
 alias gg='git graph --all'
 alias tmp='cd ~/tmp;ls -l'
+alias okta='go get github.com/segmentio/aws-okta && aws-okta add'
 aws configure
+PATH=$PATH:/usr/local/go/bin:~/go/bin
 EOF
    SHELL
 end
