@@ -72,11 +72,11 @@ Vagrant.configure("2") do |config|
       pip install -q aws-sam-cli
       pip install -q awscli
       sudo gem install terraforming
-      wget --quiet https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip
-      unzip terraform_0.11.7_linux_amd64.zip
+      wget --quiet https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip
+      unzip terraform_0.11.8_linux_amd64.zip
       mkdir -p /home/ubuntu/bin/
       mv terraform /home/ubuntu/bin/
-      rm -f terraform_0.11.7_linux_amd64.zip
+      rm -f terraform_0.11.8_linux_amd64.zip
       sudo usermod -aG docker ubuntu
       wget --quiet -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
       tar xzf go1.9.linux-amd64.tar.gz
@@ -103,8 +103,8 @@ alias gba='git branch -a'
 alias gg='git graph --all'
 alias tmp='cd ~/tmp;ls -l'
 alias okta='go get github.com/segmentio/aws-okta && aws-okta add'
-aws configure
 PATH=$PATH:/usr/local/go/bin:~/go/bin
+aws configure
 EOF
    SHELL
 end
