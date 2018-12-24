@@ -66,24 +66,22 @@ Vagrant.configure("2") do |config|
    config.vm.provision "shell", inline: <<-SHELL
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-      sudo apt-get -qq update
-      sudo apt-get -qq install -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep
-      pip install -q terrafile
-      pip install -q aws-sam-cli
-      pip install -q awscli
-      sudo gem install terraforming
-      wget --quiet https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip
-      unzip terraform_0.11.8_linux_amd64.zip
-      mkdir -p /home/ubuntu/bin/
-      mv terraform /home/ubuntu/bin/
-      rm -f terraform_0.11.8_linux_amd64.zip
+      sudo apt-get update
+      sudo apt-get install -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0
+      pip install aws-sam-cli awscli
+      #sudo gem install terraforming
       sudo usermod -aG docker ubuntu
       wget --quiet -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
       tar xzf go1.9.linux-amd64.tar.gz
       sudo mv go /usr/local/
       sudo chown -R root:root /usr/local/go
+      rm -rf go1.9.linux-amd64.tar.gz
       echo "PATH=\$PATH:/usr/local/go/bin" | sudo tee /etc/profile.d/go.sh
-      cat << EOF >> /home/ubuntu/.bashrc
+      git clone https://github.com/kamatama41/tfenv.git /home/vagrant/.tfenv
+      PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
+      /home/vagrant/.tfenv/bin/tfenv install 0.11.11
+      su - vagrant -c "go get github.com/segmentio/aws-okta"
+      cat << EOF >> /home/vagrant/.bashrc
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ls='ls -G'
@@ -102,8 +100,7 @@ alias gph='git push'
 alias gba='git branch -a'
 alias gg='git graph --all'
 alias tmp='cd ~/tmp;ls -l'
-alias okta='go get github.com/segmentio/aws-okta && aws-okta add'
-PATH=$PATH:/usr/local/go/bin:~/go/bin
+PATH=$PATH:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:
 aws configure
 EOF
    SHELL
