@@ -100,6 +100,8 @@ alias gph='git push'
 alias gba='git branch -a'
 alias gg='git graph --all'
 alias tmp='cd ~/tmp;ls -l'
+alias aok='aws-okta exec'
+alias aol='aws-okta login'
 PATH=$PATH:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:
 aws configure
 EOF
