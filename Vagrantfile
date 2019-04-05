@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get update
       sudo apt-get install -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0
-      pip install aws-sam-cli awscli boto ansible==2.5.3
+      pip install aws-sam-cli awscli boto ansible==2.5.3 terraform-compliance
       #sudo gem install terraforming
       sudo usermod -aG docker ubuntu
       wget --quiet -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
@@ -81,6 +81,7 @@ Vagrant.configure("2") do |config|
       PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
       /home/vagrant/.tfenv/bin/tfenv install 0.11.11
       su - vagrant -c "go get github.com/segmentio/aws-okta"
+      su - vagrant -c "go get github.com/gruntwork-io/terratest/modules/terraform"
       cat << EOF >> /home/vagrant/.bashrc
 alias ..='cd ..'
 alias ...='cd ../..'
