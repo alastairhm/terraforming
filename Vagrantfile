@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "hashicorp/bionic64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -68,8 +68,6 @@ Vagrant.configure("2") do |config|
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get update
       sudo apt-get install -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0
-      pip install aws-sam-cli awscli boto ansible==2.5.3 terraform-compliance
-      #sudo gem install terraforming
       sudo usermod -aG docker ubuntu
       wget --quiet -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
       tar xzf go1.9.linux-amd64.tar.gz
@@ -79,7 +77,9 @@ Vagrant.configure("2") do |config|
       echo "PATH=\$PATH:/usr/local/go/bin" | sudo tee /etc/profile.d/go.sh
       git clone https://github.com/kamatama41/tfenv.git /home/vagrant/.tfenv
       PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
-      /home/vagrant/.tfenv/bin/tfenv install 0.11.11
+      /home/vagrant/.tfenv/bin/tfenv install 0.11.14
+      /home/vagrant/.tfenv/bin/tfenv install 0.12.20
+      pip install aws-sam-cli awscli boto ansible==2.5.3
       su - vagrant -c "go get github.com/segmentio/aws-okta"
       su - vagrant -c "go get github.com/gruntwork-io/terratest/modules/terraform"
       cat << EOF >> /home/vagrant/.bashrc
