@@ -67,7 +67,8 @@ Vagrant.configure("2") do |config|
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get update
-      sudo apt-get install -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0
+      sudo apt-get install -qq -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0 \
+         build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7      
       sudo usermod -aG docker ubuntu
       wget --quiet -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
       tar xzf go1.9.linux-amd64.tar.gz
@@ -79,7 +80,8 @@ Vagrant.configure("2") do |config|
       PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
       /home/vagrant/.tfenv/bin/tfenv install 0.11.14
       /home/vagrant/.tfenv/bin/tfenv install 0.12.20
-      pip install aws-sam-cli awscli boto ansible==2.5.3
+      pip3 install aws-sam-cli awscli boto ansible==2.5.3
+      pip3 install --user pipenv
       su - vagrant -c "go get github.com/segmentio/aws-okta"
       su - vagrant -c "go get github.com/gruntwork-io/terratest/modules/terraform"
       cat << EOF >> /home/vagrant/.bashrc

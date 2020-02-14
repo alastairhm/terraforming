@@ -1,2 +1,4 @@
 *.log
 .vagrant/*
+config
+id_rsa
