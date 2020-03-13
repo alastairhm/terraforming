@@ -70,6 +70,7 @@ Vagrant.configure("2") do |config|
       sudo apt-get install -qq -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0 \
          build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 git-flow
       sudo usermod -aG docker ubuntu
+      sudo usermod -aG docker vagrant
       wget --quiet -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
       tar xzf go1.9.linux-amd64.tar.gz
       sudo mv go /usr/local/
