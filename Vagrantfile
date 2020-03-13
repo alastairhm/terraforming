@@ -80,6 +80,7 @@ Vagrant.configure("2") do |config|
       PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
       /home/vagrant/.tfenv/bin/tfenv install 0.11.14
       /home/vagrant/.tfenv/bin/tfenv install latest:^0.12
+      chown -R vagrant. /home/vagrant/.tfenv
       pip3 install aws-sam-cli awscli boto ansible==2.5.3
       pip3 install --user pipenv
       su - vagrant -c "go get github.com/segmentio/aws-okta"
