@@ -69,23 +69,24 @@ Vagrant.configure("2") do |config|
       sudo apt-get update
       sudo apt-get install -qq -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0 \
          build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 git-flow
-      sudo usermod -aG docker ubuntu
       sudo usermod -aG docker vagrant
-      wget --quiet -c https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz
-      tar xzf go1.9.linux-amd64.tar.gz
+      wget --quiet -c https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz
+      tar xzf go1.14.1.linux-amd64.tar.gz
       sudo mv go /usr/local/
       sudo chown -R root:root /usr/local/go
-      rm -rf go1.9.linux-amd64.tar.gz
+      rm -rf go1.14.1.linux-amd64.tar.gz
       echo "PATH=\$PATH:/usr/local/go/bin" | sudo tee /etc/profile.d/go.sh
       git clone https://github.com/kamatama41/tfenv.git /home/vagrant/.tfenv
       PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
       /home/vagrant/.tfenv/bin/tfenv install 0.11.14
+      /home/vagrant/.tfenv/bin/tfenv install latest:^0.11
       /home/vagrant/.tfenv/bin/tfenv install latest:^0.12
       chown -R vagrant. /home/vagrant/.tfenv
-      pip3 install aws-sam-cli awscli boto ansible==2.5.3
+      pip3 install aws-sam-cli awscli boto ansible==2.5.3 pre-commit
       pip3 install --user pipenv
       su - vagrant -c "go get github.com/segmentio/aws-okta"
       su - vagrant -c "go get github.com/gruntwork-io/terratest/modules/terraform"
+      su - vagrant -c "GO111MODULE="on" go get github.com/segmentio/terraform-docs@v0.8.2"
       cat << EOF >> /home/vagrant/.bashrc
 alias ..='cd ..'
 alias ...='cd ../..'
