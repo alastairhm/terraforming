@@ -79,8 +79,10 @@ Vagrant.configure("2") do |config|
       git clone https://github.com/kamatama41/tfenv.git /home/vagrant/.tfenv
       PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
       /home/vagrant/.tfenv/bin/tfenv install 0.11.14
+      /home/vagrant/.tfenv/bin/tfenv install 0.12.23
       /home/vagrant/.tfenv/bin/tfenv install latest:^0.11
       /home/vagrant/.tfenv/bin/tfenv install latest:^0.12
+      cat "0.12.23" > /home/vagrant/.tfenv/version
       chown -R vagrant. /home/vagrant/.tfenv
       pip3 install aws-sam-cli awscli boto ansible==2.5.3 pre-commit
       pip3 install --user pipenv
