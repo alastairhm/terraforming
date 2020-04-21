@@ -82,7 +82,7 @@ Vagrant.configure("2") do |config|
       /home/vagrant/.tfenv/bin/tfenv install 0.12.23
       /home/vagrant/.tfenv/bin/tfenv install latest:^0.11
       /home/vagrant/.tfenv/bin/tfenv install latest:^0.12
-      cat "0.12.23" > /home/vagrant/.tfenv/version
+      cat "0.12.24" > /home/vagrant/.tfenv/version
       chown -R vagrant. /home/vagrant/.tfenv
       pip3 install aws-sam-cli awscli boto ansible==2.5.3 pre-commit
       pip3 install --user pipenv
