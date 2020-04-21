@@ -79,7 +79,7 @@ Vagrant.configure("2") do |config|
       git clone https://github.com/kamatama41/tfenv.git /home/vagrant/.tfenv
       PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
       /home/vagrant/.tfenv/bin/tfenv install 0.11.14
-      /home/vagrant/.tfenv/bin/tfenv install 0.12.23
+      /home/vagrant/.tfenv/bin/tfenv install 0.12.24
       /home/vagrant/.tfenv/bin/tfenv install latest:^0.11
       /home/vagrant/.tfenv/bin/tfenv install latest:^0.12
       cat "0.12.24" > /home/vagrant/.tfenv/version
@@ -89,6 +89,8 @@ Vagrant.configure("2") do |config|
       su - vagrant -c "go get github.com/segmentio/aws-okta"
       su - vagrant -c "go get github.com/gruntwork-io/terratest/modules/terraform"
       su - vagrant -c "GO111MODULE="on" go get github.com/segmentio/terraform-docs@v0.8.2"
+      rm /bin/sh
+      ln -s /bin/bash /bin/sh
       cat << EOF >> /home/vagrant/.bashrc
 alias ..='cd ..'
 alias ...='cd ../..'
