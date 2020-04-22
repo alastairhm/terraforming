@@ -114,6 +114,9 @@ alias aok='aws-okta exec'
 alias aol='aws-okta login'
 PATH=$PATH:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:
 aws configure
+cd /bin
+sudo rm /bin/sh
+sudo ln -s /bin/bash sh
 EOF
    SHELL
 end
