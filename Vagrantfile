@@ -70,25 +70,9 @@ Vagrant.configure("2") do |config|
       sudo apt-get install -qq -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0 \
          build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 git-flow
       sudo usermod -aG docker vagrant
-      wget --quiet -c https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz
-      tar xzf go1.14.1.linux-amd64.tar.gz
-      sudo mv go /usr/local/
-      sudo chown -R root:root /usr/local/go
-      rm -rf go1.14.1.linux-amd64.tar.gz
-      echo "PATH=\$PATH:/usr/local/go/bin" | sudo tee /etc/profile.d/go.sh
-      git clone https://github.com/kamatama41/tfenv.git /home/vagrant/.tfenv
-      PATH="$HOME/.tfenv/bin:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:$PATH"
-      /home/vagrant/.tfenv/bin/tfenv install 0.11.14
-      /home/vagrant/.tfenv/bin/tfenv install 0.12.24
-      /home/vagrant/.tfenv/bin/tfenv install latest:^0.11
-      /home/vagrant/.tfenv/bin/tfenv install latest:^0.12
-      cat "0.12.24" > /home/vagrant/.tfenv/version
-      chown -R vagrant. /home/vagrant/.tfenv
       pip3 install aws-sam-cli awscli boto ansible==2.5.3 pre-commit
       pip3 install --user pipenv
-      su - vagrant -c "go get github.com/segmentio/aws-okta"
-      su - vagrant -c "go get github.com/gruntwork-io/terratest/modules/terraform"
-      su - vagrant -c "GO111MODULE="on" go get github.com/segmentio/terraform-docs@v0.8.2"
+      git clone https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.7.8
       rm /bin/sh
       ln -s /bin/bash /bin/sh
       cat << EOF >> /home/vagrant/.bashrc
@@ -112,8 +96,18 @@ alias gg='git graph --all'
 alias tmp='cd ~/tmp;ls -l'
 alias aok='aws-okta exec'
 alias aol='aws-okta login'
-PATH=$PATH:/usr/local/go/bin:~/go/bin:/home/vagrant/.tfenv/bin:
+PATH=$PATH:/usr/local/go/bin:~/go/bin:
+source /home/vagrant/.asdf/asdf.sh
 aws configure
 EOF
+      cat << ENDOFFILE > /home/vagrant/.tool-versions
+golang 1.14
+python 3.7.7
+terraform 0.12.24 0.11.14
+terraform-docs v0.9.1
+terragrunt 0.23.12
+tflint 0.15.5
+ENDOFFILE
+   chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions
    SHELL
 end
