@@ -55,6 +55,7 @@ Vagrant.configure("2") do |config|
   #
   #   # Customize the amount of memory on the VM:
      vb.memory = "2048"
+     vb.cpus = 2
    end
   #
   # View the documentation for the provider you are using for more
@@ -68,11 +69,11 @@ Vagrant.configure("2") do |config|
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get update
       sudo apt-get install -qq -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0 \
-         build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 git-flow
+         build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 git-flow bzip2 libsqlite3-dev libbz2-dev
       sudo usermod -aG docker vagrant
       pip3 install aws-sam-cli awscli boto ansible==2.5.3 pre-commit
       pip3 install --user pipenv
-      git clone https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.7.8
+      git clone -q https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.7.8
       rm /bin/sh
       ln -s /bin/bash /bin/sh
       cat << EOF >> /home/vagrant/.bashrc
@@ -98,18 +99,15 @@ alias aok='aws-okta exec'
 alias aol='aws-okta login'
 PATH=$PATH:/usr/local/go/bin:~/go/bin:
 source /home/vagrant/.asdf/asdf.sh
+
 aws configure
 EOF
-      cat << ENDOFFILE > /home/vagrant/.tool-versions
-golang 1.14
-python 3.7.7
-terraform 0.12.24 0.11.14
-terraform-docs v0.9.1
-terragrunt 0.23.12
-tflint 0.15.5
-ENDOFFILE
-   chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions
-   su - vagrant -c "for plugin in $(cut -d\" \" -f1 /home/vagrant/.tool-versions); do /home/vagrant/.asdf/bin/asdf plugin add $plugin; done"
-   su - vagrant -c "/home/vagrant/.asdf/bin/asdf install"
+      cp /vagrant/asdf/tool-versions /home/vagrant/.tool-versions
+      cp /vagrant/asdf/asdfrc /home/vagrant/.asdfrc
+      cp /vagrant/asdf/plugin.sh /home/vagrant/.asdf/plugin.sh
+      chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions /home/vagrant/.asdfrc
+      su - vagrant -c "/home/vagrant/.asdf/plugin.sh"
+      su - vagrant -c "source /home/vagrant/.asdf/asdf.sh;/home/vagrant/.asdf/bin/asdf install"
+       su - vagrant -c "go get github.com/segmentio/aws-okta"
    SHELL
 end
