@@ -109,5 +109,7 @@ terragrunt 0.23.12
 tflint 0.15.5
 ENDOFFILE
    chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions
+   su - vagrant -c "for plugin in $(cut -d\" \" -f1 /home/vagrant/.tool-versions); do /home/vagrant/.asdf/bin/asdf plugin add $plugin; done"
+   su - vagrant -c "asdf install"
    SHELL
 end
