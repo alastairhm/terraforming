@@ -99,15 +99,18 @@ alias aok='aws-okta exec'
 alias aol='aws-okta login'
 PATH=$PATH:/usr/local/go/bin:~/go/bin:
 source /home/vagrant/.asdf/asdf.sh
-
+asdf reshim golang
+asdf current
 aws configure
 EOF
+      mkdir /home/vagrant/.aws
       cp /vagrant/asdf/tool-versions /home/vagrant/.tool-versions
       cp /vagrant/asdf/asdfrc /home/vagrant/.asdfrc
       cp /vagrant/asdf/plugin.sh /home/vagrant/.asdf/plugin.sh
-      chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions /home/vagrant/.asdfrc
+      cp /vagrant/aws/config /home/vagrant/.aws/
+      chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions /home/vagrant/.asdfrc /home/vagrant/.aws
       su - vagrant -c "/home/vagrant/.asdf/plugin.sh"
       su - vagrant -c "source /home/vagrant/.asdf/asdf.sh;/home/vagrant/.asdf/bin/asdf install"
-       su - vagrant -c "go get github.com/segmentio/aws-okta"
+      su - vagrant -c "/home/vagrant/.asdf/shims/go get github.com/segmentio/aws-okta"
    SHELL
 end
