@@ -2,10 +2,27 @@
 
 ## Vagrant setup for Terraform and AWS
 
-All the tools need to run Terraform and AWS-CLI are installed using [asdf](https://asdf-vm.com/#/).
+### Pre-regs
 
-Edit the `adfs/tools-versions` file to control the packages and versions installed.
+* Vagrant [https://www.vagrantup.com/intro/getting-started/install](https://www.vagrantup.com/intro/getting-started/install)
+* Virtal Box [https://www.virtualbox.org/](https://www.virtualbox.org/)
+* Git [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+### Usage
+
+```bash
+git clone https://github.com/alastairhm/terraforming.git
+cd terraforming
+vagrant up
+vagrant ssh
+```
 
 You will need to copy in or setup your AWS configuration, SSH keys etc after bootup.
 
 The command `aws-okta add` will and run the setup for the aws-okta CLI tool.
+
+### Customize
+
+All the tools need to run Terraform and AWS-CLI are installed using [asdf](https://asdf-vm.com/#/).
+
+Edit the `adfs/tools-versions` file to control the packages and versions installed.
