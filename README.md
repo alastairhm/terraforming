@@ -19,7 +19,7 @@ vagrant ssh
 
 You will need to copy in or setup your AWS configuration, SSH keys etc after bootup.
 
-The command `aws-okta add` will and run the setup for the aws-okta CLI tool.
+See documentation on [Saml2AWS](https://github.com/Versent/saml2aws) for information on setting up CLI access to AWS.
 
 ### Customize
 

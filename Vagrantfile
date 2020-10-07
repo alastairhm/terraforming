@@ -111,6 +111,5 @@ EOF
       chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions /home/vagrant/.asdfrc /home/vagrant/.aws
       su - vagrant -c "/home/vagrant/.asdf/plugin.sh"
       su - vagrant -c "source /home/vagrant/.asdf/asdf.sh;/home/vagrant/.asdf/bin/asdf install"
-      su - vagrant -c "/home/vagrant/.asdf/shims/go get github.com/segmentio/aws-okta"
    SHELL
 end
