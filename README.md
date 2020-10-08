@@ -25,4 +25,4 @@ See documentation on [Saml2AWS](https://github.com/Versent/saml2aws) for informa
 
 All the tools need to run Terraform and AWS-CLI are installed using [asdf](https://asdf-vm.com/#/).
 
-Edit the `adfs/tools-versions` file to control the packages and versions installed.
+Edit the `asdf/tools-versions` file to control the packages and versions installed.
