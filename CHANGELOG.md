@@ -9,6 +9,11 @@ Dates in this file are in format of YYYY-MM-DD (2019-12-12 means 12th of Decembe
 
 ## Unreleased
 
+### Changed
+
+* Removed Ansible and version tweaks [@alastairhm](https://github.com/alastairhm)
+* Update Readme [@davidcollom](https://github.com/davidcollom)
+
 ## [[4.0.0]](https://github.com/alastairhm/terraforming/releases/tag/4.0.0) 2020-10-7
 
 ### Changed

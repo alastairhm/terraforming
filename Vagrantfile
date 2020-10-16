@@ -67,13 +67,15 @@ Vagrant.configure("2") do |config|
    config.vm.provision "shell", inline: <<-SHELL
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
       sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-      sudo apt-get update
-      sudo apt-get install -qq -y python-pip unzip jq ruby apt-transport-https ca-certificates curl software-properties-common docker-ce ack-grep pkg-config libusb-1.0 \
-         build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip python3.7-dev python3.7 git-flow bzip2 libsqlite3-dev libbz2-dev
+      sudo apt-get update -qq
+      sudo apt-get install -qq -y python-pip unzip ruby apt-transport-https neofetch \
+         ca-certificates curl software-properties-common docker-ce ack-grep pkg-config \
+         libusb-1.0 build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev \
+         python3-pip python3.7-dev python3.7 git-flow bzip2 libsqlite3-dev libbz2-dev jq
       sudo usermod -aG docker vagrant
-      pip3 install aws-sam-cli awscli boto ansible==2.5.3 pre-commit
-      pip3 install --user pipenv
-      git clone -q https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.7.8
+      pip3 -q install aws-sam-cli awscli boto pre-commit
+      pip3 -q install --user pipenv
+      git clone -q https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.8.0
       rm /bin/sh
       ln -s /bin/bash /bin/sh
       cat << EOF >> /home/vagrant/.bashrc
@@ -99,6 +101,7 @@ alias aok='aws-okta exec'
 alias aol='aws-okta login'
 PATH=$PATH:/usr/local/go/bin:~/go/bin:
 source /home/vagrant/.asdf/asdf.sh
+neofetch
 asdf reshim golang
 asdf current
 aws configure
@@ -109,7 +112,7 @@ EOF
       cp /vagrant/asdf/plugin.sh /home/vagrant/.asdf/plugin.sh
       cp /vagrant/aws/config /home/vagrant/.aws/
       chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions /home/vagrant/.asdfrc /home/vagrant/.aws
-      su - vagrant -c "/home/vagrant/.asdf/plugin.sh"
-      su - vagrant -c "source /home/vagrant/.asdf/asdf.sh;/home/vagrant/.asdf/bin/asdf install"
+      su - vagrant -c "/home/vagrant/.asdf/plugin.sh > /tmp/asdf.log"
+      su - vagrant -c "source /home/vagrant/.asdf/asdf.sh;/home/vagrant/.asdf/bin/asdf install >> /tmp/asdf.log"
    SHELL
 end
