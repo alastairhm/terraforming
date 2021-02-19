@@ -1,8 +1,7 @@
-golang 1.15
-python 3.9.0
-terraform 0.13.4 0.12.24 0.11.14
-terraform-docs v0.10.1
-terragrunt 0.23.12
-tflint 0.20.2
-tfsec 0.30.1
+python 3.8.5
 saml2aws 2.26.1
+terraform 0.13.4 0.12.24 0.11.14
+terraform-docs v0.11.1
+terragrunt 0.23.12
+tflint 0.24.1
+tfsec 0.38.4

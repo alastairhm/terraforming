@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "hashicorp/bionic64"
+  config.vm.box = "ubuntu/focal64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -65,19 +65,22 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", inline: <<-SHELL
-      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
       sudo apt-get update -qq
-      sudo apt-get install -qq -y python-pip unzip ruby apt-transport-https neofetch \
-         ca-certificates curl software-properties-common docker-ce ack-grep pkg-config \
-         libusb-1.0 build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev \
-         python3-pip python3.7-dev python3.7 git-flow bzip2 libsqlite3-dev libbz2-dev jq
+      sudo apt-get install -qq -y python3-pip unzip ruby apt-transport-https neofetch \
+         ca-certificates curl software-properties-common docker.io ack-grep pkg-config \
+         libusb-1.0-0 build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev \
+         python3.8-dev git-flow bzip2 libsqlite3-dev libbz2-dev jq unzip
+      sudo systemctl enable --now docker
       sudo usermod -aG docker vagrant
-      pip3 -q install aws-sam-cli awscli boto pre-commit
+      pip3 -q install boto3 pre-commit
       pip3 -q install --user pipenv
       git clone -q https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.8.0
       rm /bin/sh
       ln -s /bin/bash /bin/sh
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+      sudo ./aws/install
+      rm -rf ./aws
       cat << EOF >> /home/vagrant/.bashrc
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -97,12 +100,8 @@ alias gph='git push'
 alias gba='git branch -a'
 alias gg='git graph --all'
 alias tmp='cd ~/tmp;ls -l'
-alias aok='aws-okta exec'
-alias aol='aws-okta login'
-PATH=$PATH:/usr/local/go/bin:~/go/bin:
 source /home/vagrant/.asdf/asdf.sh
 neofetch
-asdf reshim golang
 asdf current
 aws configure
 EOF
