@@ -9,6 +9,14 @@ Dates in this file are in format of YYYY-MM-DD (2019-12-12 means 12th of Decembe
 
 ## Unreleased
 
+## [[5.0.0]](https://github.com/alastairhm/terraforming/releases/tag/5.0.0) 2021-02-19
+
+## Changed
+
+* Update versions, remove golang  [@alastairhm](https://github.com/alastairhm)
+
+## [[4.1.0]](https://github.com/alastairhm/terraforming/releases/tag/4.0.0) 2020-10-16
+
 ## Changed
 
 * Updating to Ubuntu Focal [@alastairhm](https://github.com/alastairhm)
