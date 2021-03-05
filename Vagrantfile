@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
       sudo apt-get install -qq -y python3-pip unzip ruby apt-transport-https neofetch \
          ca-certificates curl software-properties-common docker.io ack-grep pkg-config \
          libusb-1.0-0 build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev \
-         python3.8-dev git-flow bzip2 libsqlite3-dev libbz2-dev jq unzip
+         python3.8-dev git-flow bzip2 libsqlite3-dev libbz2-dev jq unzip dos2unix
       sudo systemctl enable --now docker
       sudo usermod -aG docker vagrant
       pip3 -q install boto3 pre-commit
@@ -87,6 +87,9 @@ Vagrant.configure("2") do |config|
       cp /vagrant/asdf/tool-versions /home/vagrant/.tool-versions
       cp /vagrant/asdf/asdfrc /home/vagrant/.asdfrc
       cp /vagrant/asdf/plugin.sh /home/vagrant/.asdf/plugin.sh
+      dos2unix /home/vagrant/.asdf/plugin.sh
+      dos2unix /home/vagrant/.tool-versions
+      dos2unix /home/vagrant/.asdfrc
       cp /vagrant/aws/config /home/vagrant/.aws/
       chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions /home/vagrant/.asdfrc /home/vagrant/.aws
       su - vagrant -c "curl -sLf https://spacevim.org/install.sh | bash"

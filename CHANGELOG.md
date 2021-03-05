@@ -13,6 +13,7 @@ Dates in this file are in format of YYYY-MM-DD (2019-12-12 means 12th of Decembe
 
 * Updating versions and tweaks to script [@alastairhm](https://github.com/alastairhm)
 * SpaceVIM  [@alastairhm](https://github.com/alastairhm)
+* Dos2Unix to fix Window format line endings creeping in [@alastairhm](https://github.com/alastairhm) 
 
 ## [[5.0.0]](https://github.com/alastairhm/terraforming/releases/tag/5.0.0) 2021-02-19
 
