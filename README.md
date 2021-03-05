@@ -17,7 +17,14 @@ vagrant up
 vagrant ssh
 ```
 
-You will need to copy in or setup your AWS configuration, SSH keys etc after bootup.
+### Post Startup
+
+You will need to copy in or setup your AWS configuration, SSH keys etc after boot-up.
+
+These would need to go into the `/home/vagrant/.aws` and `/home/vagrant/.ssh` folders.
+Obviously it is a bad idea to commit your config or ssh keys to a public git repo.
+
+### Saml2AWS
 
 See documentation on [Saml2AWS](https://github.com/Versent/saml2aws) for information on setting up CLI access to AWS.
 

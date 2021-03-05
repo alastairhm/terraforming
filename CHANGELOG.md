@@ -9,6 +9,10 @@ Dates in this file are in format of YYYY-MM-DD (2019-12-12 means 12th of Decembe
 
 ## Unreleased
 
+## Changed
+
+* Updating versions and tweaks to script
+
 ## [[5.0.0]](https://github.com/alastairhm/terraforming/releases/tag/5.0.0) 2021-02-19
 
 ## Changed
