@@ -95,5 +95,6 @@ Vagrant.configure("2") do |config|
       su - vagrant -c "curl -sLf https://spacevim.org/install.sh | bash"
       su - vagrant -c "/home/vagrant/.asdf/plugin.sh > /tmp/asdf.log 2>&1"
       su - vagrant -c "source /home/vagrant/.asdf/asdf.sh;/home/vagrant/.asdf/bin/asdf install >> /tmp/asdf.log 2>&1"
+      su - vagrant -c "/home/vagrant/.asdf/shims/starship init bash >> /home/vagrant/.bashrc"
    SHELL
 end

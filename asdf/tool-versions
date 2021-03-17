@@ -5,3 +5,4 @@ terraform-docs v0.11.2
 terragrunt 0.23.12
 tflint 0.24.1
 tfsec 0.39.5
+starship 0.41.3
