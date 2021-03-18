@@ -1,7 +1,8 @@
 python 3.8.5
-saml2aws 2.26.1
+saml2aws 2.28.2
 terraform 0.13.4 0.12.24 0.11.14
-terraform-docs v0.11.1
+terraform-docs v0.11.2
 terragrunt 0.23.12
 tflint 0.24.1
-tfsec 0.38.4
+tfsec 0.39.5
+starship 0.41.3

@@ -9,6 +9,23 @@ Dates in this file are in format of YYYY-MM-DD (2019-12-12 means 12th of Decembe
 
 ## Unreleased
 
+## [[5.1.0]](https://github.com/alastairhm/terraforming/releases/tag/5...0) 2021-03-18
+
+## Changed
+
+* Updating versions and tweaks to script [@alastairhm](https://github.com/alastairhm)
+* SpaceVIM  [@alastairhm](https://github.com/alastairhm)
+* Dos2Unix to fix Window format line endings creeping in [@alastairhm](https://github.com/alastairhm) 
+* Starship prompt [@alastairhm](https://github.com/alastairhm) 
+
+## [[5.0.0]](https://github.com/alastairhm/terraforming/releases/tag/5.0.0) 2021-02-19
+
+## Changed
+
+* Update versions, remove golang  [@alastairhm](https://github.com/alastairhm)
+
+## [[4.1.0]](https://github.com/alastairhm/terraforming/releases/tag/4.0.0) 2020-10-16
+
 ## Changed
 
 * Updating to Ubuntu Focal [@alastairhm](https://github.com/alastairhm)
