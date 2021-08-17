@@ -9,7 +9,13 @@ Dates in this file are in format of YYYY-MM-DD (2019-12-12 means 12th of Decembe
 
 ## Unreleased
 
-## [[5.1.0]](https://github.com/alastairhm/terraforming/releases/tag/5...0) 2021-03-18
+## [[5.2.0]](https://github.com/alastairhm/terraforming/releases/tag/5.2.0) 2021-08-17
+
+## Changed
+
+* Updating versions [@alastairhm](https://github.com/alastairhm)
+
+## [[5.1.0]](https://github.com/alastairhm/terraforming/releases/tag/5.1.0) 2021-03-18
 
 ## Changed
 
