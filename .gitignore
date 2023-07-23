@@ -3,3 +3,4 @@
 config
 id_rsa
 saml2aws
+.vscode/*

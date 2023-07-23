@@ -1,0 +1,47 @@
+---
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400 #One day
+
+    - name: Ensure packages are installed
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - ack-grep
+        - apt-transport-https
+        - build-essential 
+        - bzip2 
+        - ca-certificates
+        - chrony
+        - curl
+        - docker.io
+        - dos2unix        
+        - git-flow 
+        - jq 
+        - libbz2-dev 
+        - libffi-dev 
+        - libpq-dev 
+        - libsqlite3-dev 
+        - libssl-dev 
+        - libusb-1.0-0 
+        - neofetch
+        - openssl 
+        - pkg-config
+        - ruby 
+        - software-properties-common 
+        - unzip 
+        - zlib1g-dev 
+
+    - name: Ensure services are running
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop:
+        - chronyd
+        - docker
+

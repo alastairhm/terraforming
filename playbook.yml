@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars:
+    repo_path: "gitd"
+    local_user: "vagrant"
+    local_group: "vagrant"
+  become: yes
+  tasks:
+    - import_tasks: playbooks/packages.yml
+    - import_tasks: playbooks/gitrepo.yml
+

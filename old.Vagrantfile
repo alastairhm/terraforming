@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/jammy64"
+  config.vm.box = "ubuntu/focal64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -64,8 +64,32 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "playbook.yml"
-  end
-
+   config.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update -qq
+      sudo apt-get install -qq -y python3-pip unzip ruby apt-transport-https neofetch \
+         ca-certificates curl software-properties-common docker.io ack-grep pkg-config \
+         libusb-1.0-0 build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev \
+         python3.8-dev git-flow bzip2 libsqlite3-dev libbz2-dev jq unzip dos2unix
+      sudo systemctl enable --now docker
+      sudo usermod -aG docker vagrant
+      pip3 -q install boto3 pre-commit
+      pip3 -q install --user pipenv
+      git clone -q https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.12.0
+      rm /bin/sh
+      ln -s /bin/bash /bin/sh
+      cat /vagrant/files/bashrc >> /home/vagrant/.bashrc
+      mkdir /home/vagrant/.aws
+      cp /vagrant/asdf/tool-versions /home/vagrant/.tool-versions
+      cp /vagrant/asdf/asdfrc /home/vagrant/.asdfrc
+      cp /vagrant/asdf/plugin.sh /home/vagrant/.asdf/plugin.sh
+      dos2unix /home/vagrant/.asdf/plugin.sh
+      dos2unix /home/vagrant/.tool-versions
+      dos2unix /home/vagrant/.asdfrc
+      cp /vagrant/aws/config /home/vagrant/.aws/
+      chown -R vagrant. /home/vagrant/.asdf /home/vagrant/.tool-versions /home/vagrant/.asdfrc /home/vagrant/.aws
+      su - vagrant -c "curl -sLf https://spacevim.org/install.sh | bash"
+      su - vagrant -c "/home/vagrant/.asdf/plugin.sh > /tmp/asdf.log 2>&1"
+      su - vagrant -c "source /home/vagrant/.asdf/asdf.sh;/home/vagrant/.asdf/bin/asdf install >> /tmp/asdf.log 2>&1"
+      su - vagrant -c "/home/vagrant/.asdf/shims/starship init bash >> /home/vagrant/.bashrc"
+   SHELL
 end

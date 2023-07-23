@@ -1,0 +1,36 @@
+---
+    - name: "ensure gitrepo directory exists"
+      file:
+        path: "/home/{{ local_user }}/{{ repo_path }}"
+        state: directory
+        owner: "{{ local_user }}"
+        group: "{{ local_group }}"
+      become: true
+
+    - name: Ensure repos are cloned
+      git:
+        repo: "{{ item.url }}"
+        dest: "/home/{{ local_user }}/{{ repo_path }}/{{ item.path }}"
+      loop:
+        - { "url":"https://github.com/asdf-vm/asdf.git", "path":"asdf"}
+
+    - name: Change file permission
+      file:
+        path: "{{ repo_path }}"
+        owner: "{{ local_user }}"
+        group: "{{ local_group }}"          
+        recurse: yes
+
+    - name: link adsf
+      file:
+        src: "/home/{{ local_user }}/{{ repo_path }}/asdf"
+        dest: "/home/{{ local_user }}/.asdf"
+        state: link
+
+    - name: Add asdf to bashrc
+      lineinfile:
+        dest: "/home/{{ local_user }}/.bashrc"
+        line: |
+          . "$HOME/.asdf/asdf.sh"
+          . "$HOME/.asdf/completions/asdf.bash"
+
