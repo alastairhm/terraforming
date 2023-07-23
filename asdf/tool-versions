@@ -1,6 +1,7 @@
+awscli 2.13.3
 python 3.9.0
 saml2aws 2.28.2
-terraform 1.5.3 0.12.24 0.11.14
+terraform 1.5.3
 terraform-docs v0.16.0
 terragrunt 0.48.4
 tflint 0.47.0

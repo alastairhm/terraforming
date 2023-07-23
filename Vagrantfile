@@ -74,14 +74,9 @@ Vagrant.configure("2") do |config|
       sudo usermod -aG docker vagrant
       pip3 -q install boto3 pre-commit
       pip3 -q install --user pipenv
-      git clone -q https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.8.0
+      git clone -q https://github.com/asdf-vm/asdf.git /home/vagrant/.asdf --branch v0.12.0
       rm /bin/sh
       ln -s /bin/bash /bin/sh
-      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      unzip awscliv2.zip
-      rm awscliv2.zip
-      sudo ./aws/install
-      rm -rf ./aws
       cat /vagrant/files/bashrc >> /home/vagrant/.bashrc
       mkdir /home/vagrant/.aws
       cp /vagrant/asdf/tool-versions /home/vagrant/.tool-versions

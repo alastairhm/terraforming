@@ -9,6 +9,7 @@ Dates in this file are in format of YYYY-MM-DD (2019-12-12 means 12th of Decembe
 
 ## Unreleased
 * Updating versions [@alastairhm](https://github.com/alastairhm)
+* Move AWS CLI to ASDF install
 
 ## [[5.2.0]](https://github.com/alastairhm/terraforming/releases/tag/5.2.0) 2021-08-17
 
