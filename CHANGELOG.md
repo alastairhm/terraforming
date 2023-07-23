@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2).
 Dates in this file are in format of YYYY-MM-DD (2019-12-12 means 12th of December 2019).
 
 ## Unreleased
+* Updating versions [@alastairhm](https://github.com/alastairhm)
 
 ## [[5.2.0]](https://github.com/alastairhm/terraforming/releases/tag/5.2.0) 2021-08-17
 
